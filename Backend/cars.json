@@ -1,0 +1,32 @@
+[
+    {
+        "car_name": "Maruti Alto K10",
+        "fuel_type": "Petrol",
+        "transmission_type": "Manual",
+        "body_type": "Hatchback",
+        "seating_capacity": 5,
+        "rating": 4.5,
+        "starting_price": 399000,
+        "ending_price": 583000
+    },
+    {
+        "car_name": "Maruti Brezza",
+        "fuel_type": "Petrol",
+        "transmission_type": "Manual",
+        "body_type": "SUV",
+        "seating_capacity": 5,
+        "rating": 4.5,
+        "starting_price": 799000,
+        "ending_price": 1396000
+    },
+    {
+        "car_name": "Mahindra Thar",
+        "fuel_type": "Diesel",
+        "transmission_type": "Manual",
+        "body_type": "SUV",
+        "seating_capacity": 4,
+        "rating": 4.5,
+        "starting_price": 1353000,
+        "ending_price": 1603000
+    }
+]
