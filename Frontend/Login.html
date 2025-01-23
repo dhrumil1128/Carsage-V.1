@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Recommendation: Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #c3d8ef;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-weight: bold;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+         /* Logo background container */
+         .logo-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1; /* Behind the main content */
+        }
+    
+        /* Logo appearance - each logo will move randomly */
+        .logo-background img {
+            position: absolute;
+            width: 150px; /* Adjust the size of the logos */
+            height: 150px; /* Adjust the size of the logos */
+            opacity: 0.8;
+            animation: moveLogo 60s linear infinite, fadeInOut 5s ease-in-out infinite;
+        }
+    
+        /* Animation for random movement in all directions */
+        @keyframes moveLogo {
+            0% {
+                transform: translate(var(--start-x), var(--start-y));
+            }
+            25% {
+                transform: translate(var(--end-x-1), var(--end-y-1));
+            }
+            50% {
+                transform: translate(var(--end-x-2), var(--end-y-2));
+            }
+            75% {
+                transform: translate(var(--end-x-3), var(--end-y-3));
+            }
+            100% {
+                transform: translate(var(--start-x), var(--start-y));
+            }
+        }
+    
+        /* Animation for fading in and out of logos */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        .custom-navbar {
+            background-color: #004B87;
+            color: white;
+        }
+        
+        .navbar a {
+            color: #ffffff;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: #000000;
+        }
+        
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            margin: auto;
+            margin-top: 5vh;
+        }
+        
+        .title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #004B87;
+            font-weight: bolder;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #004B87;
+        }
+        
+        .btn {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: #004B87;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        footer {
+            background-color: #004B87;
+            color: white;
+            font-size: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+        }
+        
+        #live-footer {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee-linear 10s linear infinite;
+        }
+        
+        @keyframes marquee-linear {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                margin-top: 10vh;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                font-size: 0.9rem;
+            }
+        }
+
+        .toggle {
+            margin-top: 15px;
+            color: #004B87;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .toggle:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="logo-background">
+        <!-- Logos with random movement across the entire page -->
+        <img src="./Images/ai.png" alt="Logo 1" class="logo" style="--start-x: 50px; --start-y: 100px; --end-x-1: 90vw; --end-y-1: 150px; --end-x-2: 80vw; --end-y-2: 80vh; --end-x-3: 30vw; --end-y-3: 70vh;">
+        <img src="./Images/Machine learning.png" alt="Logo 2" class="logo" style="--start-x: 200px; --start-y: 150px; --end-x-1: 60vw; --end-y-1: 20vh; --end-x-2: 90vw; --end-y-2: 60vh; --end-x-3: 50vw; --end-y-3: 40vh;">
+        <img src="./Images/transport.png" alt="Logo 3" class="logo" style="--start-x: 700px; --start-y: 300px; --end-x-1: 40vw; --end-y-1: 30vh; --end-x-2: 80vw; --end-y-2: 50vh; --end-x-3: 70vw; --end-y-3: 70vh;">
+        <img src="./Images/deep-learning.png" alt="Logo 4" class="logo" style="--start-x: 500px; --start-y: 500px; --end-x-1: 20vw; --end-y-1: 60vh; --end-x-2: 70vw; --end-y-2: 30vh; --end-x-3: 40vw; --end-y-3: 80vh;">
+        <img src="./Images/secure.png" alt="Logo 5" class="logo" style="--start-x: 800px; --start-y: 400px; --end-x-1: 50vw; --end-y-1: 80vh; --end-x-2: 20vw; --end-y-2: 60vh; --end-x-3: 60vw; --end-y-3: 20vh;">
+        <img src="./Images/buy.png" alt="Logo 6" class="logo" style="--start-x: 100px; --start-y: 500px; --end-x-1: 80vw; --end-y-1: 40vh; --end-x-2: 10vw; --end-y-2: 30vh; --end-x-3: 60vw; --end-y-3: 70vh;">
+        <img src="./Images/camera.png" alt="Logo 7" class="logo" style="--start-x: 600px; --start-y: 200px; --end-x-1: 40vw; --end-y-1: 20vh; --end-x-2: 70vw; --end-y-2: 50vh; --end-x-3: 30vw; --end-y-3: 40vh;">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+        <div class="container-fluid">
+            <div class="navbar-brand d-flex align-items-center">
+                <video autoplay muted loop style="width: 40px; height: 40px; border-radius: 50%;">
+                    <source src="supercar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <span style="margin-left: 10px; font-size: 1.2rem; font-weight: 700; color: white; font-family: 'Lobster Two', cursive;">CarSage</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="Login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./About Us.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Login/Register Form -->
+    <div class="container">
+        <div class="title">Find The Perfect Car For You</div>
+        <div class="tagline">Your perfect car, just a click away.</div>
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="Enter your email" required>
+            <input type="password" id="login-password" placeholder="Enter your password" required>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                <label class="form-check-label" for="showPassword">Show Password</label>
+            </div>
+            <button type="submit" class="btn">Start Engine</button>
+        </form>
+        <div id="login-message" style="margin-top: 15px; font-weight: bold;"></div>
+        <div style="margin-top: 10px;">
+            <div class="toggle">
+            <a href="Reg.html" style="font-size: 0.9rem; color: #004B87; text-decoration: none;">Don't have an account? Register here</a>
+        </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div id="live-footer">
+            Welcome to CarSage! | Driven by Machine Learning & Deep Learning | Contact us at carsage1128@gmail.com.com | &copy; 2025 CarSage By DhrumilPawar1128 |
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script type="module">
+        // Import Firebase libraries (make sure these match your Firebase setup)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7MVTKv8dNhoYF2Mi3XJry4qtlS02HYc0",
+            authDomain: "carsage-d4de8.firebaseapp.com",
+            databaseURL: "https://carsage-d4de8-default-rtdb.firebaseio.com",
+            projectId: "carsage-d4de8",
+            storageBucket: "carsage-d4de8.firebasestorage.app",
+            messagingSenderId: "384749165205",
+            appId: "1:384749165205:web:c10ff9889dc0214d62199c",
+            measurementId: "G-TGR2M60C9Q"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Reference to the form and message display element
+        const form = document.getElementById('login-form'); // Ensure this is the correct form ID
+        const messageElement = document.getElementById('login-message'); // Ensure this element exists in your HTML
+
+        // Add an event listener for the login form submission
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Get the user's email and password from the form fields
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+
+            // Validate the email
+            if (!email || !password) {
+                messageElement.textContent = "Please fill in both email and password.";
+                messageElement.style.color = "red";
+                return;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                messageElement.textContent = "Please enter a valid email.";
+                messageElement.style.color = "red";
+                return;
+            }
+
+            // Try to sign in the user with the provided credentials
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Display success message
+                messageElement.textContent = "Login successful!";
+                messageElement.style.color = "#004B87";
+                console.log("User logged in:", user); // Log the user details (for debugging)
+            } catch (error) {
+                // Handle errors
+                console.log("Error during login:", error); // Log the error (for debugging)
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                if (errorCode === 'user-not-found') {
+                    messageElement.textContent = "Email not found. Please register first.";
+                } else if (errorCode === 'wrong-password') {
+                    messageElement.textContent = "Incorrect password. Please try again.";
+                } else {
+                    messageElement.textContent = errorMessage;
+                }
+
+                // Display the error message
+                messageElement.style.color = "#004B87";
+            }
+        });
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission behavior
+        
+            // Get the user's email and password from the form fields
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+        
+            // Validate the input fields
+            if (!email || !password) {
+                messageElement.textContent = "Please fill in both email and password.";
+                messageElement.style.color = "red";
+                return;
+            }
+        
+            // Try to sign in the user with the provided credentials
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+        
+                // Display success message
+                messageElement.textContent = "Login successful!";
+                messageElement.style.color = "#004B87";
+                console.log("User logged in:", user); // Log the user details (for debugging)
+        
+                // Redirect the user to the home page after successful login
+                window.location.href = 'home.html';
+        
+            } catch (error) {
+                // Handle errors
+                console.log("Error during login:", error); // Log the error (for debugging)
+                const errorCode = error.code;
+                const errorMessage = error.message;
+        
+                if (errorCode === 'auth/user-not-found') {
+                    messageElement.textContent = "Email not found. Please register first.";
+                } else if (errorCode === 'auth/wrong-password') {
+                    messageElement.textContent = "Incorrect password. Please try again.";
+                } else {
+                    messageElement.textContent = errorMessage;
+                }
+        
+                // Display the error message
+                messageElement.style.color = "#004B87";
+            }
+        });
+        
+    </script>
+    <script src ="./Toggle.js"></script>
+</body>
+</html>

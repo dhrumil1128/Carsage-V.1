@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarSage: Feedback</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts - Lobster Two -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #c3d8ef;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+ /* Logo background container */
+ .logo-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* Behind the main content */
+}
+
+/* Logo appearance - each logo will move randomly */
+.logo-background img {
+    position: absolute;
+    width: 150px; /* Adjust the size of the logos */
+    height: 150px; /* Adjust the size of the logos */
+    opacity: 0.8;
+    animation: moveLogo 60s linear infinite, fadeInOut 5s ease-in-out infinite;
+}
+
+/* Animation for random movement in all directions */
+@keyframes moveLogo {
+    0% {
+        transform: translate(var(--start-x), var(--start-y));
+    }
+    25% {
+        transform: translate(var(--end-x-1), var(--end-y-1));
+    }
+    50% {
+        transform: translate(var(--end-x-2), var(--end-y-2));
+    }
+    75% {
+        transform: translate(var(--end-x-3), var(--end-y-3));
+    }
+    100% {
+        transform: translate(var(--start-x), var(--start-y));
+    }
+}
+
+/* Animation for fading in and out of logos */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+        .navbar {
+            background-color: #054c97;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: #ffffff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #000000;
+        }
+
+        .navbar a.active {
+            color: #0056b3;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background:  rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+            
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            color: #333;
+            font-size: 1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            background: #054c97;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #007bff;
+        }
+
+        footer {
+            background-color: #004B87;
+            color: white;
+            font-size: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        #live-footer {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee-linear 10s linear infinite;
+        }
+
+        @keyframes marquee-linear {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-background">
+        <!-- Logos with random movement across the entire page -->
+        <img src="./Images/ai.png" alt="Logo 1" class="logo" style="--start-x: 50px; --start-y: 100px; --end-x-1: 90vw; --end-y-1: 150px; --end-x-2: 80vw; --end-y-2: 80vh; --end-x-3: 30vw; --end-y-3: 70vh;">
+        <img src="./Images/Machine learning.png" alt="Logo 2" class="logo" style="--start-x: 200px; --start-y: 150px; --end-x-1: 60vw; --end-y-1: 20vh; --end-x-2: 90vw; --end-y-2: 60vh; --end-x-3: 50vw; --end-y-3: 40vh;">
+        <img src="./Images/transport.png" alt="Logo 3" class="logo" style="--start-x: 700px; --start-y: 300px; --end-x-1: 40vw; --end-y-1: 30vh; --end-x-2: 80vw; --end-y-2: 50vh; --end-x-3: 70vw; --end-y-3: 70vh;">
+        <img src="./Images/deep-learning.png" alt="Logo 4" class="logo" style="--start-x: 500px; --start-y: 500px; --end-x-1: 20vw; --end-y-1: 60vh; --end-x-2: 70vw; --end-y-2: 30vh; --end-x-3: 40vw; --end-y-3: 80vh;">
+        <img src="./Images/secure.png" alt="Logo 5" class="logo" style="--start-x: 800px; --start-y: 400px; --end-x-1: 50vw; --end-y-1: 80vh; --end-x-2: 20vw; --end-y-2: 60vh; --end-x-3: 60vw; --end-y-3: 20vh;">
+        <img src="./Images/buy.png" alt="Logo 6" class="logo" style="--start-x: 100px; --start-y: 500px; --end-x-1: 80vw; --end-y-1: 40vh; --end-x-2: 10vw; --end-y-2: 30vh; --end-x-3: 60vw; --end-y-3: 70vh;">
+        <img src="./Images/camera.png" alt="Logo 7" class="logo" style="--start-x: 600px; --start-y: 200px; --end-x-1: 40vw; --end-y-1: 20vh; --end-x-2: 70vw; --end-y-2: 50vh; --end-x-3: 30vw; --end-y-3: 40vh;">
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <div class="navbar-brand d-flex align-items-center">
+                <video autoplay muted loop style="width: 40px; height: 40px; border-radius: 50%;">
+                    <source src="supercar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <span style="margin-left: 10px; font-size: 1.2rem; font-weight: 700; color: white; font-family: 'Lobster Two', cursive;">CarSage</span>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="feedback.html">Feedback</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Feedback Section -->
+    <div class="container">
+        <h2>We Value Your Feedback</h2>
+        <p>Help us improve your experience.</p>
+        <form id="feedback-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="feedback">Feedback</label>
+                <textarea id="feedback" rows="4" placeholder="Enter your feedback" required></textarea>
+            </div>
+            <button type="submit" class="btn">Submit Feedback</button>
+        </form>
+        <div id="feedback-message" class="alert mt-3" style="display: none;"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div id="live-footer">
+            Welcome to CarSage! | Driven by Machine Learning & Deep Learning | Contact us at carsage1128@gmail.com.com | &copy; 2025 CarSage By DhrumilPawar1128 |
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AJAX Logic for Feedback Submission -->
+        <script>
+            document.getElementById('feedback-form').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+        
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const feedback = document.getElementById('feedback').value;
+        
+                // Send feedback data to the Flask backend
+                fetch('http://127.0.0.1:5000/submit-feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        feedback: feedback
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const messageElement = document.getElementById('feedback-message');
+                    
+                    // Clear any previous error or success message
+                    messageElement.style.display = 'none';
+        
+                    if (data.message) {
+                        messageElement.textContent = data.message;
+                        messageElement.className = 'alert alert-success';
+                        messageElement.style.display = 'block';
+                    } else if (data.error) {
+                        
+                    }
+                })
+                .catch(error => {
+                    // In case of network or server failure, hide message or handle separately
+                    console.error('Error:', error);
+                });
+            });
+        </script>
+        
+    </script>
+</body>
+</html>

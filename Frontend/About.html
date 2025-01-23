@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarSage : About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Lobster Two -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #c3d8ef;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-y: hidden; 
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Logo background container */
+        .logo-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1; /* Behind the main content */
+        }
+        
+        /* Logo appearance - each logo will move randomly */
+        .logo-background img {
+            position: absolute;
+            width: 150px; /* Adjust the size of the logos */
+            height: 150px; /* Adjust the size of the logos */
+            opacity: 0.8;
+            animation: moveLogo 60s linear infinite, fadeInOut 5s ease-in-out infinite;
+        }
+        
+        /* Animation for random movement in all directions */
+        @keyframes moveLogo {
+            0% {
+                transform: translate(var(--start-x), var(--start-y));
+            }
+            25% {
+                transform: translate(var(--end-x-1), var(--end-y-1));
+            }
+            50% {
+                transform: translate(var(--end-x-2), var(--end-y-2));
+            }
+            75% {
+                transform: translate(var(--end-x-3), var(--end-y-3));
+            }
+            100% {
+                transform: translate(var(--start-x), var(--start-y));
+            }
+        }
+        
+        /* Animation for fading in and out of logos */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: #054c97;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Changed to fixed */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            width: 100%;
+            padding-top: 10px;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: #0046be;
+        }
+        
+        .navbar a {
+            color: #ffffff;
+            font-weight: 490;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #000000;
+        }
+        
+        .nav-item:hover a {
+            color: #000000;
+        }
+        
+        .navbar-toggler {
+            border-color: #ddd;
+        }
+        
+        /* Adjust the content below navbar */
+        .container {
+            background: #f9f9f9; /* Slightly off-white for contrast */
+            width: 60%;
+            max-width: 800px;
+            padding-top: -25px;
+            padding-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            margin: auto;
+            
+        }
+        
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #004B87;
+            font-weight: bold;
+            
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .content {
+            text-align: left;
+            font-size: 0.85em;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        .tech-section {
+            margin-top: 30px;
+        }
+        
+        .tech-section img {
+            max-width: 35px;
+            margin-right: 5px;
+            border-radius: 5px;
+            vertical-align: middle;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #004B87; /* CarGurus Blue */
+            color: white;
+            font-size: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+        }
+        
+        #live-footer {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee-linear 10s linear infinite;
+        }
+        
+        @keyframes marquee-linear {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-background">
+        <!-- Logos with random movement across the entire page -->
+        <img src="./Images/ai.png" alt="Logo 1" class="logo" style="--start-x: 50px; --start-y: 100px; --end-x-1: 90vw; --end-y-1: 150px; --end-x-2: 80vw; --end-y-2: 80vh; --end-x-3: 30vw; --end-y-3: 70vh;">
+        <img src="./Images/Machine learning.png" alt="Logo 2" class="logo" style="--start-x: 200px; --start-y: 150px; --end-x-1: 60vw; --end-y-1: 20vh; --end-x-2: 90vw; --end-y-2: 60vh; --end-x-3: 50vw; --end-y-3: 40vh;">
+        <img src="./Images/transport.png" alt="Logo 3" class="logo" style="--start-x: 700px; --start-y: 300px; --end-x-1: 40vw; --end-y-1: 30vh; --end-x-2: 80vw; --end-y-2: 50vh; --end-x-3: 70vw; --end-y-3: 70vh;">
+        <img src="./Images/deep-learning.png" alt="Logo 4" class="logo" style="--start-x: 500px; --start-y: 500px; --end-x-1: 20vw; --end-y-1: 60vh; --end-x-2: 70vw; --end-y-2: 30vh; --end-x-3: 40vw; --end-y-3: 80vh;">
+        <img src="./Images/secure.png" alt="Logo 5" class="logo" style="--start-x: 800px; --start-y: 400px; --end-x-1: 50vw; --end-y-1: 80vh; --end-x-2: 20vw; --end-y-2: 60vh; --end-x-3: 60vw; --end-y-3: 20vh;">
+        <img src="./Images/buy.png" alt="Logo 6" class="logo" style="--start-x: 100px; --start-y: 500px; --end-x-1: 80vw; --end-y-1: 40vh; --end-x-2: 10vw; --end-y-2: 30vh; --end-x-3: 60vw; --end-y-3: 70vh;">
+        <img src="./Images/camera.png" alt="Logo 7" class="logo" style="--start-x: 600px; --start-y: 200px; --end-x-1: 40vw; --end-y-1: 20vh; --end-x-2: 70vw; --end-y-2: 50vh; --end-x-3: 30vw; --end-y-3: 40vh;">
+    </div>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <div class="navbar-brand d-flex align-items-center">
+                <video autoplay muted loop style="width: 40px; height: 40px; border-radius: 50%;">
+                    <source src="supercar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <span style="margin-left: 10px; font-size: 1.2rem; font-weight: 700; color: white;  font-family: 'Lobster Two', cursive;">CarSage</span>
+            </div>
+
+            <!-- Nav items Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service.html">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feedback.html">Feedback</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- About Section -->
+    <div class="container">
+        <div class="title">About Us</div>
+        <div class="tagline">Discover the journey behind the wheel.</div>
+        <div class="content">
+            <p>
+                At <strong>CarSage</strong>, we believe that finding your perfect car should be as exhilarating as driving it. Our platform utilizes advanced technology to understand your preferences, needs, and lifestyle, delivering tailored suggestions that perfectly align with what you're looking for.
+            </p>
+            <p>
+                We employ cutting-edge technologies, including machine learning and artificial intelligence, to analyze data and provide personalized car recommendations. By leveraging advanced algorithms, we ensure every suggestion is data-driven and tailored to meet your unique requirements.
+            </p>
+            <div class="tech-section">
+                <h3>Our Technology:</h3>
+                <p>
+                    <img src="./Images/ai.png" alt="AI Icon"> <strong>Artificial Intelligence:</strong> Our AI systems analyze user preferences and market data to recommend the best car options.
+                </p>
+                <p>
+                    <img src="./Images/Machine learning.png" alt="ML Icon"> <strong>Machine Learning:</strong> With ML models, our platform learns from user interactions to continuously improve recommendations.
+                </p>
+                <p>
+                    <img src="./Images/deep-learning.png" alt="Data Icon"> <strong>Deep Learning:</strong> Utilizes CNNs for precise car image classification and accurate model identification.
+                </p>
+
+                <p>
+                    <img src="./Images/secure.png" alt="Data Icon"> <strong>Firebase Integration:</strong> Ensures secure login, registration, and feedback management for a seamless user experience.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div id="live-footer">
+            Welcome to CarSage! | Driven by Machine Learning & Deep Learning | Contact us at carsage1128@gmail.com.com | &copy; 2025 CarSage By DhrumilPawar1128 |
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

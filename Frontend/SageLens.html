@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Recommendations: Service 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    
+    <!-- Google Fonts - Lobster Two -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #c3d8ef;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Logo background container */
+        .logo-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1; /* Behind the main content */
+        }
+        
+        /* Logo appearance - each logo will move randomly */
+        .logo-background img {
+            position: absolute;
+            width: 150px; /* Adjust the size of the logos */
+            height: 150px; /* Adjust the size of the logos */
+            opacity: 0.8;
+            animation: moveLogo 60s linear infinite, fadeInOut 5s ease-in-out infinite;
+        }
+        
+        /* Animation for random movement in all directions */
+        @keyframes moveLogo {
+            0% {
+                transform: translate(var(--start-x), var(--start-y));
+            }
+            25% {
+                transform: translate(var(--end-x-1), var(--end-y-1));
+            }
+            50% {
+                transform: translate(var(--end-x-2), var(--end-y-2));
+            }
+            75% {
+                transform: translate(var(--end-x-3), var(--end-y-3));
+            }
+            100% {
+                transform: translate(var(--start-x), var(--start-y));
+            }
+        }
+        
+        /* Animation for fading in and out of logos */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        /* Navbar */
+        
+        .navbar {
+            background-color: #054c97;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+        }
+        
+        .navbar a {
+            color: #ffffff;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            color: #000000;
+        }
+        
+        .navbar .nav-link.active {
+            color: #000000; /* Highlight active link with gold color */
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            margin: 50px auto;
+            padding-bottom: 20px;
+        }
+        
+        .container h2 {
+            color: #004B87; /* CarGurus Blue */
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        input[type="file"] {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.1);
+            color: #333;
+        }
+        
+        input[type="file"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+            font-weight: bold;
+        }
+        
+        .note {
+            font-size: 0.9em;
+            color: #f8d7da;
+            margin: 10px 0 20px 0;
+            animation: lightUpOff 2s ease-in-out infinite;
+        }
+        
+        @keyframes lightUpOff {
+            0% {
+                opacity: 0.5;
+                color: #f8d7da; 
+            }
+            50% {
+                opacity: 1;
+                color: #ff0d00; 
+            }
+            100% {
+                opacity: 0.5;
+                color: #f8d7da; 
+            }
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            background: #004B87;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        #loading-spinner {
+            display: none;
+            margin-top: 20px;
+            color: #004B87;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /*Footer Section */
+        footer {
+            background-color: #004B87; /* CarGurus Blue */
+            color: white;
+            font-size: 1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+        }
+        
+        #live-footer {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee-linear 10s linear infinite;
+        }
+        
+        @keyframes marquee-linear {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    
+    
+    
+    <div class="logo-background">
+        <!-- Logos with random movement across the entire page -->
+        <img src="./Images/ai.png" alt="Logo 1" class="logo" style="--start-x: 50px; --start-y: 100px; --end-x-1: 90vw; --end-y-1: 150px; --end-x-2: 80vw; --end-y-2: 80vh; --end-x-3: 30vw; --end-y-3: 70vh;">
+        <img src="./Images/Machine learning.png" alt="Logo 2" class="logo" style="--start-x: 200px; --start-y: 150px; --end-x-1: 60vw; --end-y-1: 20vh; --end-x-2: 90vw; --end-y-2: 60vh; --end-x-3: 50vw; --end-y-3: 40vh;">
+        <img src="./Images/transport.png" alt="Logo 3" class="logo" style="--start-x: 700px; --start-y: 300px; --end-x-1: 40vw; --end-y-1: 30vh; --end-x-2: 80vw; --end-y-2: 50vh; --end-x-3: 70vw; --end-y-3: 70vh;">
+        <img src="./Images/deep-learning.png" alt="Logo 4" class="logo" style="--start-x: 500px; --start-y: 500px; --end-x-1: 20vw; --end-y-1: 60vh; --end-x-2: 70vw; --end-y-2: 30vh; --end-x-3: 40vw; --end-y-3: 80vh;">
+        <img src="./Images/secure.png" alt="Logo 5" class="logo" style="--start-x: 800px; --start-y: 400px; --end-x-1: 50vw; --end-y-1: 80vh; --end-x-2: 20vw; --end-y-2: 60vh; --end-x-3: 60vw; --end-y-3: 20vh;">
+        <img src="./Images/buy.png" alt="Logo 6" class="logo" style="--start-x: 100px; --start-y: 500px; --end-x-1: 80vw; --end-y-1: 40vh; --end-x-2: 10vw; --end-y-2: 30vh; --end-x-3: 60vw; --end-y-3: 70vh;">
+        <img src="./Images/camera.png" alt="Logo 7" class="logo" style="--start-x: 600px; --start-y: 200px; --end-x-1: 40vw; --end-y-1: 20vh; --end-x-2: 70vw; --end-y-2: 50vh; --end-x-3: 30vw; --end-y-3: 40vh;">
+    </div>
+    
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            
+            <!-- Video Icon -->
+            <div class="navbar-brand d-flex align-items-center">
+                <video autoplay muted loop style="width: 40px; height: 40px; border-radius: 50%;">
+                    <source src="supercar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <span style="margin-left: 10px; font-size: 1.2rem; font-weight: 700; color: white;  font-family: 'Lobster Two', cursive;">CarSage</span>
+            </div>
+            
+            
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="service.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Feedback.html">Feedback</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Title Section -->
+    <div class="container" style="max-width: 580px; padding: 20px;">
+        <h1 class="display-3" style="font-size: 2.5rem; font-family: 'Montserrat', sans-serif; color: #004B87; font-weight: 700;">Welcome to SageLens</h1>
+        <p style="font-size: 1.2rem; font-family: 'Open Sans', sans-serif; color: #333;">Effortless car recognition at your fingertips</p>
+    </div>
+    
+    
+    
+    
+    <!-- Image Upload Section -->
+    <div class="container">
+        <h2>Upload Vehicle Image</h2>
+        <p class="note">Please ensure the car image is zoomed in for better results.</p>
+        <form id="image-upload-form" enctype="multipart/form-data" method="POST" action="/predict">
+            <input type="file" id="carImage" name="carImage" accept="image/*" required>
+            <button type="submit" class="btn">Upload & Get Car Name</button>
+        </form>
+        
+        <!-- Loading Spinner -->
+        <div id="loading-spinner">
+            <h3>Processing your image...</h3>
+        </div>
+        
+        <!-- Result Container -->
+        <div id="response-container" style="margin-top: 20px; color: #333;   font-weight: bold;  font-family: 'Montserrat', sans-serif;"></div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div id="live-footer">
+            Welcome to CarSage! | Driven by Machine Learning & Deep Learning | Contact us at carsage1128@gmail.com.com | &copy; 2025 CarSage By DhrumilPawar1128 |
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        document.getElementById("image-upload-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            
+            const loadingSpinner = document.getElementById("loading-spinner");
+            const responseContainer = document.getElementById("response-container");
+            loadingSpinner.style.display = "block";
+            responseContainer.innerHTML = "";
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch("http://localhost:5000/predict", {
+                    method: "POST",
+                    body: formData,
+                });
+                
+                loadingSpinner.style.display = "none";
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    const prediction = data.predicted_car || "Unknown car name.";
+                    responseContainer.innerHTML = `<h3>Recognized Car Model: ${prediction}</h3>`;
+                } else {
+                    responseContainer.innerHTML = `<h3 style="color: red; font-weight: bold;">Failed to predict the car name. Please try again.</h3>`;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                loadingSpinner.style.display = "none";
+                responseContainer.innerHTML = `<h3 style="color: red; font-weight: bold;">An error occurred. Please try again later.</h3>`;
+            }
+        });
+    </script>
+</body>
+</html>
