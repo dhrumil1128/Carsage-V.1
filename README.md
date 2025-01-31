@@ -104,10 +104,6 @@ CarSage delivers:
 ## Contributing
 We welcome contributions to CarSage! If you encounter issues or have suggestions for enhancements, feel free to create a pull request or open an issue on GitHub.
 
----
-
-## License
-CarSage is licensed under the MIT License. See the LICENSE file for details.
 
 ---
 
@@ -120,3 +116,4 @@ CarSage is licensed under the MIT License. See the LICENSE file for details.
 ### Contact
 For inquiries, please contact:
 - GitHub: [dhrumil1128](https://github.com/dhrumil1128)
+- LinkedIn:(https://www.linkedin.com/in/dhrumil-pawar/)
